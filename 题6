@@ -1,0 +1,37 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Jul 18 14:06:21 2018
+
+@author: Administrator
+"""
+import urllib.request as r
+data=r.urlopen('https://s.taobao.com/search?q=%E8%A3%99%E5%AD%90&type=p&tmhkh5=&spm=a21wu.241046-us.a2227oh.d100&from=sea_1_searchbutton&catId=100&ajax=true').read().decode('utf-8','ignore')
+import json
+data=json.loads(data)
+def Sp():
+    for n in range(0,36):
+        print('商品'+str(n+1))
+        print('名称:'+str(data['mods']['itemlist']['data']['auctions'][n]['title']))
+        print('价格:'+str(data['mods']['itemlist']['data']['auctions'][n]['view_price']))
+        print('地点:'+str(data['mods']['itemlist']['data']['auctions'][n]['item_loc']))
+        print('销量:'+str(data['mods']['itemlist']['data']['auctions'][n]['view_sales']))
+        if((n+1)%4==0):
+           print('*'*67)
+Sp()
+#2
+import urllib.request as r
+data=r.urlopen('https://s.taobao.com/search?q=%E8%A3%99%E5%AD%90&type=p&tmhkh5=&spm=a21wu.241046-us.a2227oh.d100&from=sea_1_searchbutton&catId=100&ajax=true').read().decode('utf-8','ignore')
+import json
+data=json.loads(data)
+ls=[]
+def price():
+    for i in range(0,36):
+        m=float(data['mods']['itemlist']['data']['auctions'][i]['view_price'])
+        ls.append(m)
+        return ls
+price()
+a=sorted(ls)
+print("商品价格从高到低排序为：")
+b=list(reversed(a))
+print(b)
+      
